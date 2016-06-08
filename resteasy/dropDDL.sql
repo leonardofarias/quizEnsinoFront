@@ -1,0 +1,11 @@
+ALTER TABLE option DROP CONSTRAINT FK_option_issue
+ALTER TABLE statistics_one_player DROP CONSTRAINT FK_statistics_one_player_id_issue
+ALTER TABLE statistics_one_player DROP CONSTRAINT FK_statistics_one_player_id_player
+ALTER TABLE statistics_multiplayer DROP CONSTRAINT FK_statistics_multiplayer_id_player
+ALTER TABLE statistics_multiplayer DROP CONSTRAINT FK_statistics_multiplayer_id_challenge
+DROP TABLE challenge CASCADE
+DROP TABLE issue CASCADE
+DROP TABLE option CASCADE
+DROP TABLE player CASCADE
+DROP TABLE statistics_one_player CASCADE
+DROP TABLE statistics_multiplayer CASCADE
