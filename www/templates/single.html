@@ -1,0 +1,17 @@
+<ion-view title="Single" hide-nav-bar="true" id="page14" style="background-color:#1B593E;" class=" ">
+    <ion-content padding="true" scroll="true" class="manual-ios-statusbar-padding">
+      <div class="bar bar-header bar-balanced">
+        <h1 class="title" ng-model="time">{{time}}</h1>
+      </div>
+      <div class="card">
+        <div class="item item-text-wrap">
+          {{issue.asking}}
+        </div>
+      </div>
+      <div class="list" ng-repeat="option in issue.optionList">
+          <button class="button button-positive button-full" ng-click="checkAnswer(option)">
+            {{option.description}}
+          </button>
+      </div>
+    </ion-content>
+</ion-view>

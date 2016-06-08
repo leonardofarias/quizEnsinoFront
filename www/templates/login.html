@@ -1,0 +1,36 @@
+<ion-view title="Login" hide-nav-bar="true" id="page17" style="background-color:#286455;" class="">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+
+
+        <form id="login-form7" class="list "> 
+            <div class="bar bar-header bar-balanced">
+              <h1 class="title">Quiz Ensino</h1>
+            </div>
+            <div class="spacer" style="width: 150px; height: 88px;"></div>
+            <div class="list">
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="email" placeholder="Email" ng-model="user.email">
+              </label>
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Senha</span>
+                <input type="password" placeholder="Senha" ng-model="user.password">
+              </label>
+            </div>
+            <div style="margin-right:-20px;">
+              <button class="button button-positive button-full" style="left:-10px;" ng-click="getUser()">
+                Log in
+              </button>
+              <button class="button button-positive button-full" style="left:-10px;" ng-click="save()">
+                Cadastrar-se
+              </button>
+            </div>
+            <div style="margin-right:-20px;">
+                <a ui-sref="tabsController.quizEnsino" id="login-button7" style="left:-10px;"  class=" button button-positive  button-full icon-right ion-social-facebook ">Log in Facebook</a>
+            </div>
+            <div style="margin-right:-20px;">
+                <a ui-sref="tabsController.quizEnsino" id="login-button9" style="left:-10px;" class=" button button-positive  button-full icon-right ion-social-google-outline ">Log in Google</a>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
