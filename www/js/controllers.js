@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('quizEnsinoCtrl', function($scope, $state) {
+.controller('quizEnsinoCtrl', function($scope, $state, Toast) {
 
   $scope.onePlayer = function(){
     $state.go('tabsController.single');
@@ -9,6 +9,40 @@ angular.module('app.controllers', [])
 })
 
 .controller('multiPlayerCtrl', function($scope) {
+
+})
+
+
+.controller('pontuaOCtrl', function($http, $scope, StatisticsService, StorageService) {
+
+    $scope.corrects = {};
+    $scope.errors = {};
+    var namePlayer = StorageService.getAll();
+
+    $scope.getE = function(){
+        StatisticsService.get(namePlayer[0],function(response){
+          if(response.success){
+            $scope.corrects = response.data.results[0];
+            $scope.errors = response.data.results[1];
+          }else{
+
+          }
+        });
+    }
+
+
+    $scope.getE();
+
+    $scope.doRefresh = function() {
+      $http.get('#/inicio/pontuacao')
+       .success(function() {
+         $scope.getE();
+       })
+       .finally(function() {
+         // Stop the ion-refresher from spinning
+         $scope.$broadcast('scroll.refreshComplete');
+       });
+    };
 
 })
 
@@ -288,10 +322,6 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('pontuaOCtrl', function($scope) {
-
-})
-
 .controller('loginCtrl', function($scope, $ionicLoading, StorageService, $state, UserService) {
 
   $scope.user = {};
@@ -300,7 +330,7 @@ angular.module('app.controllers', [])
     UserService.save($scope.user,function(response){
       if(response.success){
         $ionicLoading.show({ template: 'Bem vindo: ' + response.data.results.namePlayer, noBackdrop: true, duration: 2000 });
-        //$sessionStorage.user.namePlayer = response.data.namePlayer;
+        //StorageService.add(response.data.results.namePlayer);
         $state.go('tabsController.quizEnsino');
       }else{
         $ionicLoading.show({ template: response.error.message , noBackdrop: true, duration: 2000 });
@@ -312,7 +342,7 @@ angular.module('app.controllers', [])
     UserService.get($scope.user,function(response){
       if(response.success){
         $ionicLoading.show({ template: 'Bem vindo: ' + response.data.results.namePlayer, noBackdrop: true, duration: 2000 });
-        StorageService.add(response.data.results.namePlayer);
+        //StorageService.add(response.data.results.namePlayer);
         $state.go('tabsController.quizEnsino');
       }else{
         $ionicLoading.show({ template: response.error.message, noBackdrop: true, duration: 2000 });

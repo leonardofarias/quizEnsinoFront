@@ -28,7 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "statistics_one_player")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "StatisticsOnePlayer.findAll", query = "SELECT c FROM StatisticsOnePlayer c")})
+    @NamedQuery(name = "StatisticsOnePlayer.findAll", query = "SELECT c FROM StatisticsOnePlayer c"),
+    @NamedQuery(name = "StatisticsOnePlayer.findAnswersCorrect", query = "SELECT c FROM StatisticsOnePlayer c"
+    		+ " where c.player =:player and c.correct =:correct")})
 public class StatisticsOnePlayer implements Serializable {
     
 	private static final long serialVersionUID = 1L;

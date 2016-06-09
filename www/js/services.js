@@ -3,7 +3,8 @@ angular.module('app.services', [])
 .service('IssueService', function($http){
 
   var service = {};
-  var urlBase = 'http://localhost:8080/resteasy/rest/issues';
+  var address = "192.168.1.6";
+  var urlBase = 'http://' + address+  ':8080/resteasy/rest/issues';
 
   service.get = function(callback) {
             $http.get(urlBase + '/get')
@@ -23,7 +24,8 @@ angular.module('app.services', [])
 .service('UserService', function($http){
 
   var service = {};
-  var urlBase = 'http://localhost:8080/resteasy/rest/player';
+  var address = "192.168.1.6";
+  var urlBase = 'http://' + address+  ':8080/resteasy/rest/player';
 
   service.save = function(user, callback) {
             $http.put(urlBase + '/save', user)
@@ -53,9 +55,11 @@ angular.module('app.services', [])
 .service('StatisticsService', function($http){
 
   var service = {};
-  var urlBase = 'http://localhost:8080/resteasy/rest/statistics-one-player';
+  var address = "192.168.1.6";
+  var urlBase = 'http://' + address+  ':8080/resteasy/rest/statistics-one-player';
 
   service.save = function(issue,namePlayer,checkAnswer, callback) {
+            var namePlayer = 'leonardofarias1806';
             var query = "?idIssue=" + issue.idIssue + "&namePlayer=" + namePlayer +
             "&checkAnswer=" + checkAnswer;
             $http.put(urlBase + '/save/' + query)
@@ -67,8 +71,10 @@ angular.module('app.services', [])
                 });
         };
 
-  service.get = function(user, callback) {
-            $http.get(urlBase + '/get', user)
+  service.get = function(namePlayer, callback) {
+            var namePlayer = 'leonardofarias1806';
+            var query = "?namePlayer=" + namePlayer;
+            $http.get(urlBase + '/get' + query)
                 .success(function(response, status, headers, config) {
                     callback(response)
                 })

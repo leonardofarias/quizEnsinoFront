@@ -2,6 +2,8 @@ package com.sd.resteasy;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.GET;
@@ -32,6 +34,8 @@ import br.com.quizEnsino.model.StatisticsOnePlayer;
 public class StatisticsOnePlayerRest {
 
 	@PUT
+	@GZIP
+    @PermitAll
 	@Path("/save")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response save(@QueryParam("idIssue") String idIssue,
@@ -67,34 +71,34 @@ public class StatisticsOnePlayerRest {
 		return rb.build();
 	}
 	
-	/*@GET
+	@GET
     @GZIP
     @PermitAll
     @Path("/get")
     @Produces("application/json")
-	public Response get(@QueryParam("email") String email, 
-			@QueryParam("password") String password) {
+	public Response get(@QueryParam("namePlayer") String namePlayer) {
 			ResponseBuilder rb = null;
 		
 		try {
 			
 			PlayerBD playerBD = new PlayerBD();
-			Player player = playerBD.getUser(email, password);
+			Player player = playerBD.getByNamePlayer(namePlayer);
 			
-			if(player != null){
-				PlayerDTO playerResult = new PlayerDTO(player);				
-				rb = Response.ok(new Gson().toJson(SuccessResult.success(200, "ok", playerResult)), MediaType.APPLICATION_JSON);
-			}else{
-				rb = Response.ok(new Gson().toJson(ErrorsResult.errors(500,"Usuário ou senha não encontrado." )), MediaType.APPLICATION_JSON);
-			}
+			StatisticsOnePlayerBD statisticsOnePlayerBD = new StatisticsOnePlayerBD();
+			int corrects = statisticsOnePlayerBD.buscarQtdQuestoes(player, true);
+			int errors = statisticsOnePlayerBD.buscarQtdQuestoes(player, false);
 			
-			return rb.build();	
+			List<Integer> listaAcertosErros = new ArrayList<Integer>();
+			listaAcertosErros.add(corrects);
+			listaAcertosErros.add(errors);
+			
+			rb = Response.ok(new Gson().toJson(SuccessResult.success(200, "ok", listaAcertosErros)), MediaType.APPLICATION_JSON);
 		} catch (Exception e) {
 			String msg = "Um erro inesperado aconteceu, sinto muito!";
 		    rb = Response.status(500).entity(ErrorsResult.errors(500, msg));
 		}
 		return rb.build();
-	}*/
+	}
 	
 	private StatisticsOnePlayer validate(String json) throws JsonParseException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();

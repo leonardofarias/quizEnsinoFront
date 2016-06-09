@@ -5,6 +5,7 @@
  */
 package br.com.quizEnsino.bd;
 
+import br.com.quizEnsino.model.Player;
 import br.com.quizEnsino.model.StatisticsOnePlayer;
 
 import java.util.List;
@@ -42,6 +43,13 @@ public class StatisticsOnePlayerBD {
 	public List<StatisticsOnePlayer> listarTudo(){
         Query query = em.createNamedQuery("StatisticsOnePlayer.findAll");
         return query.getResultList();
+    }
+    
+	public Integer buscarQtdQuestoes(Player player, Boolean correct){
+        Query query = em.createNamedQuery("StatisticsOnePlayer.findAnswersCorrect");
+        query.setParameter("player", player);
+        query.setParameter("correct", correct);
+        return query.getResultList().size();
     }
 
     public StatisticsOnePlayer get(Integer id) {
