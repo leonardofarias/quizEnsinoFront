@@ -1,32 +1,14 @@
-<ion-view title="Desafio" hide-nav-bar="true" id="page10" style="background-color:#2D4D2F;" class=" ">
-    <ion-content padding="true" class="manual-ios-statusbar-padding">
-        <form id="desafio-form4" class="list ">
-            <div class="spacer" style="width: 300px; height: 50px;"></div>
-            <label class="item item-input " id="desafio-textarea1">
-                <span class="input-label">Desafio 1</span><textarea placeholder=""></textarea>
-            </label>
-            <div class="">
-                <img src="img/jK9R2ry4Qvy6jJD5s6zw_bar_progress.jpg" width="100%" height="40" style="display: block; margin-left: auto; margin-right: auto;">
-            </div>
-            <label class="item item-input " id="desafio-textarea2">
-                <span class="input-label">Desafio 2</span><textarea placeholder=""></textarea>
-            </label>
-            <div class="">
-                <img src="img/jK9R2ry4Qvy6jJD5s6zw_bar_progress.jpg" width="100%" height="40" style="display: block; margin-left: auto; margin-right: auto;">
-            </div>
-            <label class="item item-input " id="desafio-textarea3">
-                <span class="input-label">Desafio 3</span><textarea placeholder=""></textarea>
-            </label>
-            <div class="">
-                <img src="img/jK9R2ry4Qvy6jJD5s6zw_bar_progress.jpg" width="100%" height="40" style="display: block; margin-left: auto; margin-right: auto;">
-            </div>
-            <label class="item item-input " id="desafio-textarea4">
-                <span class="input-label">Desafio 4</span><textarea placeholder=""></textarea>
-            </label>
-            <div class="">
-                <img src="img/jK9R2ry4Qvy6jJD5s6zw_bar_progress.jpg" width="100%" height="40" style="display: block; margin-left: auto; margin-right: auto;">
-            </div>
-            <div class="spacer" style="width: 300px; height: 50px;"></div>
-        </form>
+<ion-view name="challenge" title="Desafio" hide-nav-bar="false" id="page10" style="background-color:#149DB3;">
+      <ion-content padding="false" class="manual-ios-statusbar-padding manual-android-statusbar-padding manual-padding-from-header">
+        
+        <ul class="list">
+            <li ng-repeat="issue in listIssues" 
+              class="item">
+              <button class="button {{issue.buttonType}} button-full">{{issue.description}}</button>
+              <h2 ng-if="issue.count == null">carregandos dados...</h2>
+              <h2 ng-if="issue.count != null">{{issue.count*100/100}}% completados</h2>
+            </li>
+        </ul>
+
     </ion-content>
 </ion-view>

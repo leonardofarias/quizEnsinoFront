@@ -3,8 +3,8 @@ angular.module('app.services', [])
 .service('IssueService', function($http){
 
   var service = {};
-  var address = "192.168.1.6";
-  var urlBase = 'http://' + address+  ':8080/resteasy/rest/issues';
+  var address = 'appquizensinowildfly-leoprojects.rhcloud.com'; 
+  var urlBase = 'http://' + address+  '/rest/issues';
 
   service.get = function(callback) {
             $http.get(urlBase + '/get')
@@ -16,51 +16,73 @@ angular.module('app.services', [])
                 });
         };
 
+
+  service.getByArea = function(area, callback) {
+            $http.get(urlBase + '/getByArea', {params: {area: area}})
+                .success(function(response, status, headers, config) {
+                    callback(response)
+                })
+                .error(function(response, status, headers, config) {
+                    callback(response);
+                });
+        };
+
   return service;
 
 
 })
 
-.service('UserService', function($http){
+.service('UserService', function($http, $ionicLoading){
 
   var service = {};
-  var address = "192.168.1.6";
-  var urlBase = 'http://' + address+  ':8080/resteasy/rest/player';
-
+  var address = 'appquizensinowildfly-leoprojects.rhcloud.com';
+  var urlBase = 'http://' + address+  '/rest/player';
+  
   service.save = function(user, callback) {
-            $http.put(urlBase + '/save', user)
-                .success(function(response, status, headers, config) {
-                    callback(response)
-                })
-                .error(function(response, status, headers, config) {
-                    callback(response);
-                });
-        };
+    $http.put(urlBase + '/save', user)
+    .success(function(response, status, headers, config) {
+        callback(response)
+    })
+    .error(function(response, status, headers, config) {
+        callback(response);
+    });
+  };
 
-  service.get = function(user, callback) {
-            var query = "?email=" + user.email + "&password=" + user.password;
-            $http.get(urlBase + '/get/' + query)
-                .success(function(response, status, headers, config) {
-                    callback(response)
-                })
-                .error(function(response, status, headers, config) {
-                    callback(response);
-                });
-        };
+  service.getUser = function(user, callback) {
+    var query = "?email=" + user.email + "&password=" + user.password;
+    $http.get(urlBase + '/get/' + query)
+    .success(function(response, status, headers, config) {
+        callback(response)
+    })
+    .error(function(response, status, headers, config) {
+        callback(response);
+    });
+  };
+
+  service.getUserByIdFacebook = function(id, callback) {
+    var query = "?id=" + id;
+    $http.get(urlBase + '/getUserByIdFacebook/' + query)
+    .success(function(response, status, headers, config) {
+        callback(response)
+    })
+    .error(function(response, status, headers, config) {
+        callback(response);
+    });
+  };
 
   return service;
-
+        
 })
 
 .service('StatisticsService', function($http){
 
   var service = {};
-  var address = "192.168.1.6";
-  var urlBase = 'http://' + address+  ':8080/resteasy/rest/statistics-one-player';
+  var address = 'appquizensinowildfly-leoprojects.rhcloud.com';
+  var urlBase = 'http://' + address+  '/rest/statistics-one-player';
 
-  service.save = function(issue,namePlayer,checkAnswer, callback) {
-            var namePlayer = 'leonardofarias1806';
-            var query = "?idIssue=" + issue.idIssue + "&namePlayer=" + namePlayer +
+  service.save = function(issue,name,checkAnswer, callback) {
+            
+            var query = "?idIssue=" + issue.idIssue + "&name=" + name +
             "&checkAnswer=" + checkAnswer;
             $http.put(urlBase + '/save/' + query)
                 .success(function(response, status, headers, config) {
@@ -71,10 +93,87 @@ angular.module('app.services', [])
                 });
         };
 
-  service.get = function(namePlayer, callback) {
-            var namePlayer = 'leonardofarias1806';
-            var query = "?namePlayer=" + namePlayer;
+  service.getStatistics = function(name, callback) {
+      
+            var query = "?name=" + name;
             $http.get(urlBase + '/get' + query)
+                .success(function(response, status, headers, config) {
+                    callback(response)
+                })
+                .error(function(response, status, headers, config) {
+                    callback(response);
+                });
+        };
+
+  service.getStatisticsByAreaName = function(area,name, callback) {
+      
+            $http.get(urlBase + '/getByAreaName',{params: {area: area, name: name}})
+                .success(function(response, status, headers, config) {
+                    callback(response)
+                })
+                .error(function(response, status, headers, config) {
+                    callback(response);
+                });
+        };
+
+  return service;
+
+})
+
+.service('StatisticsMultiService', function($http){
+
+  var service = {};
+  var address = 'appquizensinowildfly-leoprojects.rhcloud.com';
+  var urlBase = 'http://' + address+  '/rest/statistics-multi-player';
+
+  service.getStatistics = function(name, callback) {
+      
+            var query = "?name=" + name;
+            $http.get(urlBase + '/get' + query)
+                .success(function(response, status, headers, config) {
+                    callback(response)
+                })
+                .error(function(response, status, headers, config) {
+                    callback(response);
+                });
+        };
+
+  return service;
+
+})
+
+.service('RankingService', function($http){
+
+  var service = {};
+  var address = 'appquizensinowildfly-leoprojects.rhcloud.com'; 
+  var urlBase = 'http://' + address+  '/rest/ranking';
+
+  service.getRanking = function(callback) {
+            $http.get(urlBase + '/getRanking')
+                .success(function(response, status, headers, config) {
+                    callback(response)
+                })
+                .error(function(response, status, headers, config) {
+                    callback(response);
+                });
+        };
+
+  return service;
+
+
+})
+
+.service('ChallengeService', function($http){
+
+  var service = {};
+  var address = 'appquizensinowildfly-leoprojects.rhcloud.com';
+  var urlBase = 'http://' + address+  '/rest/challenge';
+
+  service.save = function(pontuacao,pontuacaoAdv,name,nameAdv, callback) {
+            
+            var query = "?pontuacao=" + pontuacao + "&pontuacaoAdv=" + pontuacaoAdv +
+            "&name=" + name + "&nameAdv=" + nameAdv;
+            $http.put(urlBase + '/save/' + query)
                 .success(function(response, status, headers, config) {
                     callback(response)
                 })

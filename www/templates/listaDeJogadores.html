@@ -1,26 +1,12 @@
-<ion-view title="Lista de Jogadores" hide-nav-bar="true" id="page12" class=" ">
-    <ion-content padding="true" class="manual-ios-statusbar-padding">
-      <div>
-          <input type="text" name="userName"
-          ng-model="user.name"
-          ng-model-options="{ getterSetter: true }" />
-         <button ng-click="conectar()">conectar</button>
-      </div>
+<ion-view name="listaJogadores" title="Lista de Jogadores" hide-nav-bar="false" id="page12" style="background-color:#149DB3;">
+     <ion-content padding="false" class="manual-ios-statusbar-padding manual-android-statusbar-padding manual-padding-from-header">
+    
 
-      <div>
-         <input type = "text" id = "msgInput" />
-         <button id = "sendMsgBtn">Send text message</button>
-      </div>
+    <div ng-repeat="player in playerList track by $index" ng-model="playerList">
+        <button class="button button-primary button-block" ng-click="accept(player)">
+            {{player}} - <small>desafiar</small>        
+        </button>
+    </div> 
 
-
-      <ul class="list">
-        <li ng-repeat="player in playerList" class="item" ng-model="playerList">
-          <div class="item item-avatar">
-            <img src="img/ipD2dMlATjODnMdP44qB_super_trunfo.jpg">
-            <p>{{player}}</p>
-            <button ng-click="accept(player)">desafiar</button>
-          </div>
-        </li>
-    </ul>
     </ion-content>
 </ion-view>

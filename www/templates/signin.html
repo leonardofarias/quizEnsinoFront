@@ -1,0 +1,28 @@
+<ion-view name="signin" title="Quiz Ensino" hide-nav-bar="true" id="page17" style="background-color:#149DB3;">
+    <ion-content padding="false" class="manual-ios-statusbar-padding manual-android-statusbar-padding manual-padding-from-header">
+        <form id="login-form7" class="list"> 
+            <div class="list" style="background:#FFF;">
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Nome</span>
+                <input type="text" placeholder="Nome" ng-model="user.name" required>
+              </label>
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="email" placeholder="Email" ng-model="user.email" required>
+              </label>
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Senha</span>
+                <input type="password" placeholder="Senha" ng-model="user.password" required>
+              </label>
+            </div>
+            <div style="margin-right:-20px;">
+              <button class="button button-calm button-full" style="left:-10px;" ng-click="save(user)">
+                Cadastrar-se
+              </button>
+            </div>
+            <div style="margin-right:-20px;">
+                <a class="facebook-sign-in button button-calm button-block ion-social-facebook" ng-click="facebookSignIn()"></a>                
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

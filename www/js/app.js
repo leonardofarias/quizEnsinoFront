@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic','ngStorage','app.controllers', 'app.routes', 'app.services', 'app.directives'])
+angular.module('app', ['ionic','LocalStorageModule','ngStorage','app.controller', 'app.routes', 'app.services', 'app.directives'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope,$state,$ionicLoading) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -15,9 +15,27 @@ angular.module('app', ['ionic','ngStorage','app.controllers', 'app.routes', 'app
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
+
+
+    if (ionic.Platform.isIOS()) {
+      cordova.plugins.iosrtc.registerGlobals();
+    }
+
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+  
+
   });
+
+  $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+    $ionicLoading.show({
+      template: to.name,
+      noBackdrop: false, duration: 2500
+    })
+
+  });
+
 })

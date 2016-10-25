@@ -1,14 +1,13 @@
-<ion-view title="Quiz Ensino" hide-nav-bar="true" id="page2" style="background-color:#1B593E;" class=" ">
-    <ion-content padding="true" class="manual-ios-statusbar-padding" scroll="false">
-        <div class="spacer" style="width: 300px; height: 82px;"></div>
-        <div id="quizEnsino2-button-bar1" class=" button-bar "></div>
-        <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
-            <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-        </div>
-        <div class="spacer" style="width: 300px; height: 52px;"></div>
-        <div id="quizEnsino2-button-bar5" class=" button-bar ">
-            <a ui-sref="tabsController.single" id="quizEnsino2-button24" style="font-weight:300;color:#0C1F0D;" class=" button button-positive  button-block button-icon icon ion-ios-contact-outline ">One Player</a>
-            <a ui-sref="tabsController.listaDeJogadores" id="quizEnsino2-button26" style="font-weight:300;color:#0C1F0D;" class=" button button-positive  button-block button-icon icon ion-ios-people ">Multi-Player</a>
-        </div>
+<ion-view name="home" title="QuizEnsino" hide-nav-bar="false" id="page2" style="background-color:#149DB3;">
+	<ion-content padding="false" class="manual-ios-statusbar-padding manual-android-statusbar-padding manual-padding-from-header">
+    	<div ng-repeat='issue in listIssues'>
+    		<button class="button button-dark button-full" ng-click="getIssues(issue.area)">
+	        	<small>{{issue.description}}</small>        
+	        </button>
+    	</div>	
+      
+        <button ui-sref="app.listaDeJogadores" class="button button-stable button-full icon ion-ios-people">Multi-Player</button>
+
     </ion-content>
 </ion-view>
+

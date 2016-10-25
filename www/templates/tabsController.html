@@ -1,13 +1,55 @@
-<ion-view title="Tabs Controller" hide-nav-bar="true" hide-back-button="true" id="page1" style="background-color:#4D5851;" class=" ">
-    <ion-tabs class="tabs-balanced tabs-icon-top " id="tabsController-tabs1">
-        <ion-tab title="Desafios" icon="ion-flag" href="#/inicio/desafio" id="tabsController-tab6" class=" ">
-            <ion-nav-view name="tab6"></ion-nav-view>
+<ion-view title="QuizEnsino" hide-nav-bar="true" hide-back-button="true">
+
+    <ion-tabs class="tabs-balanced tabs-icon-top" >
+        
+        <ion-tab title="Desafios" icon="ion-flag" ui-sref="app.challenge">
+            <ion-nav-view name="challenge"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Início" icon="ion-ios-game-controller-b" href="#/inicio/inicio" id="tabsController-tab5" class=" ">
+        
+        <ion-tab title="Estatísticas" icon="ion-stats-bars" ui-sref="app.stats" >
+            <ion-nav-view name="stats"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Início" icon="ion-ios-game-controller-b" ui-sref="app.quizEnsino">
+            <ion-nav-view name="home"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Ranking" icon="ion-ribbon-b" ui-sref="app.ranking">
+            <ion-nav-view name="ranking"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Ajustes" icon="ion-gear-a" ui-sref="app.config">
+            <ion-nav-view name="config"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>    
+</ion-view>
+
+
+
+<!--<ion-view title="QuizEnsino" hide-nav-bar="true" hide-back-button="true" id="page1" class=" ">
+
+    <ion-tabs class="tabs-balanced tabs-icon-top " id="tabsController-tabs1">
+        
+        <ion-tab title="Desafios" icon="ion-flag" ui-sref="app.desafio" id="tabsController-tab9" class=" ">
+            <ion-nav-view name="tab9"></ion-nav-view>
+        </ion-tab>
+        
+        <ion-tab title="Estatísticas" icon="ion-stats-bars" ui-sref="app.stats" id="tabsController-tab10" class=" ">
+            <ion-nav-view name="tab10"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Início" icon="ion-ios-game-controller-b" ui-sref="app.quizEnsino" id="tabsController-tab5" class=" ">
             <ion-nav-view name="tab5"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="Estatísticas" icon="ion-ribbon-b" href="#/inicio/pontuacao" id="tabsController-tab7" class=" ">
-            <ion-nav-view name="tab7"></ion-nav-view>
+
+        <ion-tab title="Ranking" icon="ion-ribbon-b" ui-sref="app.ranking" id="tabsController-tab11" class=" ">
+            <ion-nav-view name="tab11"></ion-nav-view>
         </ion-tab>
-    </ion-tabs>
-</ion-view>
+
+        <ion-tab title="MultiPlayer" icon="ion-gear-a" ui-sref="app.config" id="tabsController-tab12" class=" ">
+            <ion-nav-view name="tab12"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>    
+</ion-view>-->

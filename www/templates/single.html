@@ -1,17 +1,81 @@
-<ion-view title="Single" hide-nav-bar="true" id="page14" style="background-color:#1B593E;" class=" ">
-    <ion-content padding="true" scroll="true" class="manual-ios-statusbar-padding">
-      <div class="bar bar-header bar-balanced">
-        <h1 class="title" ng-model="time">{{time}}</h1>
-      </div>
-      <div class="card">
-        <div class="item item-text-wrap">
-          {{issue.asking}}
-        </div>
-      </div>
-      <div class="list" ng-repeat="option in issue.optionList">
-          <button class="button button-positive button-full" ng-click="checkAnswer(option)">
+<ion-view title="" hide-nav-bar="true" style="background-color:#149DB3;">
+  <ion-header-bar align-title="center" no-tap-scroll="false" ng-if="isIOS" class="bar-balanced">
+    <h1 class="title">{{time}}</h1>
+    <div class="buttons">
+      <button class="button">{{issue.area}}</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="has-header" ng-show="isIOS">      
+    <div class="item item-text-wrap">
+      {{issue.asking}}
+    </div>        
+          
+    <div class="list" style="height: 30px;">
+      <ul ng-repeat="option in issue.optionList">
+        <li class="button button-full" ng-click="checkAnswer(option)">
             {{option.description}}
-          </button>
-      </div>
-    </ion-content>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <ion-content class="has-footer" ng-show="isAndroid">      
+    <div class="item item-text-wrap">
+      {{issue.asking}}
+    </div>        
+          
+    <div class="list" style="height: 30px;">
+      <ul ng-repeat="option in issue.optionList">
+        <li class="button button-full" ng-click="checkAnswer(option)">
+            {{option.description}}
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <ion-footer-bar ng-if="isAndroid" align-title="center" class="bar-balanced">
+    <h1 class="title">{{time}}</h1>
+    <div class="buttons">
+      <button class="button">{{issue.area}}</button>
+    </div>
+  </ion-footer-bar>
 </ion-view>
+
+<!--<ion-view name="single" title="" hide-nav-bar="true" id="page14" style="background-color:#149DB3;">
+  <ion-header-bar align-title="center" no-tap-scroll="false" ng-if="isIOS" class="bar-balanced">
+    <h1 class="title">{{time}}</h1>
+    <div class="buttons">
+      <button class="button">{{issue.area}}</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="has-header" ng-show="isIOS">      
+    <div class="item item-text-wrap">
+      {{issue.asking}}
+    </div>        
+          
+    <div class="list" style="height: 30px;">
+      <ul ng-repeat="option in issue.optionList">
+        <li class="button button-full" ng-click="checkAnswer(option)">
+            {{option.description}}
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <ion-content class="has-footer" ng-show="isAndroid">      
+    <div class="item item-text-wrap">
+      {{issue.asking}}
+    </div>        
+          
+    <div class="list" style="height: 30px;">
+      <ul ng-repeat="option in issue.optionList">
+        <li class="button button-full" ng-click="checkAnswer(option)">
+            {{option.description}}
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+  <ion-footer-bar ng-if="isAndroid" align-title="center" class="bar-balanced">
+    <h1 class="title">{{time}}</h1>
+    <div class="buttons">
+      <button class="button">{{issue.area}}</button>
+    </div>
+  </ion-footer-bar>
+</ion-view>-->

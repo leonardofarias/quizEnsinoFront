@@ -1,0 +1,11 @@
+<ion-view name="ranking" title="Ranking" hide-nav-bar="false" id="page13" style="background-color:#149DB3;">
+      <ion-content padding="false" class="manual-ios-statusbar-padding manual-android-statusbar-padding manual-padding-from-header">
+      <div class="list">
+        <ul ng-repeat="ranking in listRanking | orderBy : '-total'">
+          <li class="item">
+          {{$index + 1}}. {{ranking.name}} <strong style="float:right;" >{{ranking.total}}</strong>
+          </li>
+        </ul>       
+      </div>
+    </ion-content>
+</ion-view>
